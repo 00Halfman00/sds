@@ -1,32 +1,49 @@
+"""import necessary libraries"""
+
+# environment libraries
 import os
-from PIL import Image
 from dotenv import load_dotenv
+
+# openai client
 from openai import OpenAI
+
+# image processing
+from PIL import Image
+import base64
+from io import BytesIO
+
+# web interface
 import gradio as gr
 
-
-""" Load Environment Variables """
+""" load environment variables """
 load_dotenv(override=True)
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
-""" Selected LLMs and OpenAI Client instance (Http calls to the LLMs) """
+""" selected llms and openai client instance (http calls to the llms) """
 CHAT_MODEL = "gpt-4.1-mini"
 IMAGE_MODEL = "dall-e-3"
 openai = OpenAI()
 
+""" create a system prompt """
 
-""" BASE64 ENCODING """
-import base64
-from io import BytesIO
+system_msg = "You are a helpful assistant for an airlined called FlightAI."
+system_msg += "Give short, wity, snarky answers that are one sentence long"
+
+""" tools """
+ticket_prices = {"london": "$799", "paris": "$899", "tokyo": "$1400", "sydney": "$1700"}
 
 
-""" IMAGE LLM """
+def get_ticket_prices(city):
+    return f"A flight to {city} cost {ticket_prices[city]}"
+
+
+""" function to generate an image of a city """
 
 
 def artist_agent(city):
     image_response = openai.images.generate(
         model=IMAGE_MODEL,
-        prompt=f"An image representing a vacation in {city}, showing tourist sites.",
+        prompt=f"An image representing a vacation in a {city}, showing tourist sites in art decko style.",
         size="1024x1024",
         n=1,
         response_format="b64_json",
@@ -36,19 +53,7 @@ def artist_agent(city):
     return Image.open(BytesIO(image_data))
 
 
-""" SYSTEM MESSAGE """
-system_msg = "You are a helpful assistant for an Airline called FlightAI. "
-system_msg += "Give short, witty, snarky answers, no more than 1 sentence."
-
-""" TOOLS """
-ticket_prices = {"london": "$799", "paris": "$899", "tokyo": "$1400", "sydney": "$2999"}
-
-
-def get_ticket_price(city):
-    return f"The price of a ticket to {city.title()} is {ticket_prices[city]}."
-
-
-""" CHAT LLM WITH IMAGE LLM """
+""" function to generate chat and call image function  """
 
 
 def mixed_chat(history):
@@ -60,27 +65,31 @@ def mixed_chat(history):
         if dest in message.lower():
             city = dest
             break
+
     if city:
-        reply = get_ticket_price(city)
+        history.append({"role": "assistant", "content": get_ticket_prices(city)})
         image = artist_agent(city)
     else:
         response = openai.chat.completions.create(model=CHAT_MODEL, messages=messages)
         reply = response.choices[0].message.content
+        history.append({"role": "assistant", "content": reply})
         image = None
 
-    history += [{"role": "assistant", "content": reply}]
     return history, image
 
 
-""" GRADIO UI """
+""" function to deploy web interface """
+
 with gr.Blocks() as ui:
     with gr.Row():
         chatbot = gr.Chatbot(height=400, type="messages")
         image_output = gr.Image(height=400)
     with gr.Row():
-        entry = gr.Textbox(label="Chat with our AI Assistant:")
+        entry = gr.Textbox(label="Chat with our AI assistant:")
 
     def do_entry(message, history):
+        if history is None:
+            history = []
         history += [{"role": "user", "content": message}]
         return "", history
 

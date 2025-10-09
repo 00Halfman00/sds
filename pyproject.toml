@@ -3,10 +3,11 @@ name = "sds"
 version = "0.1.0"
 description = "The SuperDataScience AI Bootcamp"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11, <3.13"
 dependencies = [
     "anthropic>=0.53.0",
     "chromadb>=1.0.12",
+    "colorama>=0.4.6",
     "docker>=7.1.0",
     "gradio>=5.33.1",
     "ipywidgets>=8.1.7",
@@ -14,6 +15,7 @@ dependencies = [
     "langchain-chroma>=0.2.4",
     "langchain-community>=0.3.25",
     "langchain-core>=0.3.65",
+    "langchain-huggingface>=0.3.1",
     "langchain-openai>=0.3.22",
     "langchain-text-splitters>=0.3.8",
     "litellm>=1.72.6",
@@ -22,7 +24,6 @@ dependencies = [
     "nbformat>=5.10.4",
     "networkx>=3.5",
     "openai>=1.86.0",
-    "openai-agents[litellm,viz,voice]>=0.0.17",
     "playwright>=1.52.0",
     "plotly>=6.1.2",
     "psutil>=7.0.0",
@@ -32,8 +33,13 @@ dependencies = [
     "ratelimit>=2.2.1",
     "requests>=2.32.4",
     "scikit-learn>=1.7.0",
+    "sentence-transformers>=5.1.1",
+    "torch==2.2.2",   # 👈 ADD THIS LINE
+    # 👇 ADD THIS LINE TO FORCE NUMPY 1.x
+    "numpy<2.0",
     "setuptools>=80.9.0",
     "speedtest-cli>=2.1.3",
+    "tiktoken>=0.11.0",
     "tqdm>=4.67.1",
 ]
 

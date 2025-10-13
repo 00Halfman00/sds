@@ -1,14 +1,28 @@
+# imported libraries
+# # Standard library for interacting with the operating system (e.g., path base names).
 import os
+
+# Finds file paths matching a specified pattern (used for iterating through document folders).
 import glob
-import re  # Needed for extracting employee name from filepath
+
+# Needed for extracting employee name from filepath
+import re
+
+# Used to load documents from the file system (loads Markdown content from directories).
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 
 # from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.text_splitter import (
-    MarkdownHeaderTextSplitter,
-)  # New splitter for structural content
+# New splitter for structural content
+from langchain.text_splitter import MarkdownHeaderTextSplitter
+
+# The ChromaDB vector store wrapper for document storage and retrieval.
 from langchain_chroma import Chroma
+
+# local imports
+# # Provides the function to initialize the embedding model (e.g., OpenAI or Hugging Face).
 from embeddings import get_embeddings
+
+# Loads environment variables (like API keys) from a .env file.
 from dotenv import load_dotenv
 
 MODEL = "gpt-4.1-nano"
@@ -16,7 +30,6 @@ db_name = "vector_db"
 knowledge_base_path = "knowledge-base/*"
 
 USE_HUGGINGFACE = True
-
 load_dotenv(override=True)
 
 
@@ -38,10 +51,10 @@ def fetch_documents():
     return documents
 
 
-def create_chunks(documents):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
-    chunks = text_splitter.split_documents(documents)
-    return chunks
+# def create_chunks(documents):
+#     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+#     chunks = text_splitter.split_documents(documents)
+#     return chunks
 
 
 def create_chunks(documents):
@@ -50,21 +63,17 @@ def create_chunks(documents):
     information (Employee Name + Section Title) to the content of each chunk.
     This replaces the naive RecursiveCharacterTextSplitter.
     """
-
     # Define the headers to split the document on.
     # We focus on H2 (##) which separates logical sections like Career Progression,
     # Performance, Compensation, and Other HR Notes.
     headers_to_split_on = [("##", "Section_Title")]
-
     all_chunks = []
-
     # Initialize the Markdown splitter
     markdown_splitter = MarkdownHeaderTextSplitter(
         headers_to_split_on=headers_to_split_on,
         # We strip the headers from the content since we will use them to tag the chunk.
         strip_headers=True,
     )
-
     for doc in documents:
         # 1. Extract the Employee Name for contextual tagging
         filename = doc.metadata.get("source", "")
@@ -73,10 +82,8 @@ def create_chunks(documents):
         employee_name = (
             match.group(1).replace("-", " ") if match else "Unknown Employee"
         )
-
         # 2. Split the document content based on H2 headers
         chunks_from_doc = markdown_splitter.split_text(doc.page_content)
-
         # 3. Contextually Tag and Enrich each chunk
         for chunk in chunks_from_doc:
             # The splitter saves the header text (e.g., 'Annual Performance History')
@@ -87,18 +94,14 @@ def create_chunks(documents):
             if not chunk.page_content.strip() and section_title == "Summary":
                 # Skip chunks that are empty or only contain the high-level HR Record/Name headers
                 continue
-
             # Create the rich, contextually tagged content for better RAG retrieval
             # Example: "Nina Patel's Annual Performance History: [content...]"
             chunk.page_content = (
                 f"{employee_name}'s {section_title}:\n" f"{chunk.page_content}"
             )
-
             # Merge original document metadata (like doc_type) with the new chunk metadata
             chunk.metadata = {**doc.metadata, **chunk.metadata}
-
             all_chunks.append(chunk)
-
     # Note: Using the Markdown splitter ensures no overlap, as each chunk is a complete section.
     return all_chunks
 
@@ -165,9 +168,11 @@ if __name__ == "__main__":
 
 
 """
-The chunk_size and chunk_overlap parameters are no longer needed in the revised code and have been removed for a very specific, strategic reason.
+The chunk_size and chunk_overlap parameters are no longer needed in the revised code and
+have been removed for a very specific, strategic reason.
 
-The shift from the old RecursiveCharacterTextSplitter to the MarkdownHeaderTextSplitter changes the entire philosophy of how documents are segmented:
+The shift from the old RecursiveCharacterTextSplitter to the
+MarkdownHeaderTextSplitter changes the entire philosophy of how documents are segmented:
 
 Why chunk_size is gone: Logical Integrity
 Old Way (Character-based): The RecursiveCharacterTextSplitter chopped the document into arbitrary blocks of text (e.g., 500 characters), regardless of whether it cut off a sentence, a paragraph, or a section title.

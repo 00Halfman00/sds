@@ -15,7 +15,7 @@ load_dotenv(override=True)
 MODEL = "gpt-4.1-nano"
 db_name = "vector_db"
 
-SYSTEM_PROMPT = """
+SYSTEM_PROMPT1 = """
 You are a knowledgeable, friendly assistant representing the company Insurellm.
 You are chatting with a user about Insurellm.
 If relevant, use the given context to answer any question.
@@ -25,8 +25,40 @@ Context:
 {context}
 """
 
+# Your current prompt is good, but we can make the Chain-of-Thought requirement more explicit
+# and add a specific guardrail against hallucination (a common issue when models are unsure).
+
+SYSTEM_PROMPT = """
+You are a knowledgeable, professional, and friendly assistant representing the company Insurellm.
+Your primary role is to answer user questions about employee information, performance, and compensation.
+
+### INSTRUCTIONS:
+1. **Fact Check:** ONLY use the provided Context below. Do not use external knowledge.
+2. **Chain-of-Thought:** Before generating the final answer, internally reason through the following steps:
+    a. Identify the core question and the required data fields (e.g., employee name, year, bonus amount).
+    b. Scan the Context for exact matches to those fields.
+    c. If a fact cannot be found in the Context, explicitly state that the information is unavailable.
+3. **Response:** Provide a concise and accurate answer based on your internal reasoning.
+
+Context:
+{context}
+"""
+
 vectorstore = Chroma(persist_directory=db_name, embedding_function=get_embeddings())
+# Current Retriever (No Filter)
 retriever = vectorstore.as_retriever(search_kwargs={"k": 10})
+# Proposed Improvement: Filter by a metadata field (e.g., 'Employee_Name')
+# This requires knowing the employee name from the question, which is complex.
+# The simplest implementation is often to use the 'score threshold'.
+# Changed k=10 to k=6 to reduce noise and increase focus on the most relevant chunks.
+
+# New: Use Maximum Marginal Relevance (MMR) for better top-K diversity
+# retriever = vectorstore.as_retriever(
+#     search_type="mmr",
+#     search_kwargs={
+#         "k": 5,
+#     },  # fetch_k: retrieve 50 candidates, then select best 5
+# )
 llm = ChatOpenAI(temperature=0, model_name=MODEL)
 
 

@@ -18,6 +18,9 @@ from langchain.text_splitter import MarkdownHeaderTextSplitter
 # The ChromaDB vector store wrapper for document storage and retrieval.
 from langchain_chroma import Chroma
 
+# Standard library for file system operations (used for deleting directories).
+import shutil
+
 # local imports
 # # Provides the function to initialize the embedding model (e.g., OpenAI or Hugging Face).
 from embeddings import get_embeddings
@@ -106,45 +109,93 @@ def create_chunks(documents):
     return all_chunks
 
 
+# def create_embeddings(chunks):
+#     embeddings = get_embeddings()
+
+#     # the deletion attempt will fail if the default collection name changes or is unknown, so make it explicit
+#     # COLLECTION_NAME = "my_knowledge_collection"  # Define a name
+
+#     # Always delete existing database to start fresh for lab experiments
+#     if os.path.exists(db_name):
+#         try:
+#             # Try to properly delete the collection first
+#             existing_vectorstore = Chroma(
+#                 persist_directory=db_name,
+#                 embedding_function=embeddings,
+#                 # collection_name=COLLECTION_NAME,  # ADD THIS LINE
+#             )
+#             existing_vectorstore.delete_collection()
+#             print(f"🗑️  Deleted existing collection from vector database at {db_name}")
+
+#         except Exception as e:
+#             print(f"⚠️  Could not delete collection properly: {e}")
+#             # Fallback to directory deletion
+#             import shutil
+
+#             shutil.rmtree(db_name)
+#             print(f"🗑️  Deleted entire vector database directory at {db_name}")
+
+#     # Create new vectorstore
+#     vectorstore = Chroma.from_documents(
+#         documents=chunks,
+#         embedding=embeddings,
+#         persist_directory=db_name,
+#         # collection_name=COLLECTION_NAME,  # ADD THIS LINE
+#     )
+
+#     collection = vectorstore._collection
+#     count = collection.count()
+
+#     sample_embedding = collection.get(limit=1, include=["embeddings"])["embeddings"][0]
+#     dimensions = len(sample_embedding)
+#     print(f"✅ Created new vectorstore with {count:,} documents")
+#     print(
+#         f"📊 There are {count:,} vectors with {dimensions:,} dimensions in the vector store"
+#     )
+#     return vectorstore
+
+
+# EMBEDDING & DELETION
 def create_embeddings(chunks):
     embeddings = get_embeddings()
 
-    # the deletion attempt will fail if the default collection name changes or is unknown, so make it explicit
-    # COLLECTION_NAME = "my_knowledge_collection"  # Define a name
-
-    # Always delete existing database to start fresh for lab experiments
+    # Always delete existing database directory to start fresh for lab experiments
     if os.path.exists(db_name):
         try:
-            # Try to properly delete the collection first
-            existing_vectorstore = Chroma(
-                persist_directory=db_name,
-                embedding_function=embeddings,
-                # collection_name=COLLECTION_NAME,  # ADD THIS LINE
-            )
-            existing_vectorstore.delete_collection()
-            print(f"🗑️  Deleted existing collection from vector database at {db_name}")
-
-        except Exception as e:
-            print(f"⚠️  Could not delete collection properly: {e}")
-            # Fallback to directory deletion
-            import shutil
-
+            # Use file system deletion (shutil.rmtree) as the primary, most reliable method
             shutil.rmtree(db_name)
             print(f"🗑️  Deleted entire vector database directory at {db_name}")
+
+        except Exception as e:
+            # This handles file locks or permission issues
+            print(f"⚠️  Could not delete vector database directory at {db_name}: {e}")
+            # If deletion fails, return None to halt the ingestion
+            return None
 
     # Create new vectorstore
     vectorstore = Chroma.from_documents(
         documents=chunks,
         embedding=embeddings,
         persist_directory=db_name,
-        # collection_name=COLLECTION_NAME,  # ADD THIS LINE
     )
+
+    # Removed: vectorstore.persist()
+    # Rationale: Persistence is handled automatically by recent LangChain/Chroma versions,
+    # and calling persist() explicitly throws an AttributeError.
 
     collection = vectorstore._collection
     count = collection.count()
 
-    sample_embedding = collection.get(limit=1, include=["embeddings"])["embeddings"][0]
-    dimensions = len(sample_embedding)
+    # Ensure the collection exists before attempting to retrieve an item
+    if count > 0:
+        sample_embedding = collection.get(limit=1, include=["embeddings"])[
+            "embeddings"
+        ][0]
+        dimensions = len(sample_embedding)
+    else:
+        # Handle case where no chunks were created (though checked in __main__)
+        dimensions = 0
+
     print(f"✅ Created new vectorstore with {count:,} documents")
     print(
         f"📊 There are {count:,} vectors with {dimensions:,} dimensions in the vector store"

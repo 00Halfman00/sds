@@ -2,6 +2,10 @@ import gradio as gr
 import pandas as pd
 from collections import defaultdict
 from dotenv import load_dotenv
+import os
+
+# Disable Hugging Face tokenizers parallelism warning
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 from eval import evaluate_all_retrieval, evaluate_all_answers
 

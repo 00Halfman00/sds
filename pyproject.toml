@@ -10,6 +10,7 @@ dependencies = [
     "colorama>=0.4.6",
     "docker>=7.1.0",
     "gradio>=5.33.1",
+    "graphviz>=0.21",
     "ipywidgets>=8.1.7",
     "langchain>=0.3.25",
     "langchain-chroma>=0.2.4",
@@ -32,6 +33,7 @@ dependencies = [
     "python-dotenv>=1.1.0",
     "ratelimit>=2.2.1",
     "requests>=2.32.4",
+    "rich>=14.1.0",
     "scikit-learn>=1.7.0",
     "sentence-transformers>=5.1.1",
     "torch==2.2.2",   # 👈 ADD THIS LINE

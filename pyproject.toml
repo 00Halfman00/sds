@@ -25,6 +25,7 @@ dependencies = [
     "nbformat>=5.10.4",
     "networkx>=3.5",
     "openai>=1.86.0",
+    "openai-agents[litellm,viz]>=0.0.17",
     "playwright>=1.52.0",
     "plotly>=6.1.2",
     "psutil>=7.0.0",

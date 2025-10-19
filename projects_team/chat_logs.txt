@@ -1,0 +1,87 @@
+2025-10-19 17:35:13,014 HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-10-19 17:35:13,034 HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-10-19 17:35:13,263 HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-10-19 17:36:16,924 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-19 17:36:17,014 User:What industries has oscar_sanchez worked in?
+Assistant:Oscar Sanchez has worked in the electronics manufacturing industry, with a focus on consumer electronics and medical devices. He has extensive experience in engineering roles within these sectors, particularly in product engineering and manufacturing engineering.
+ ----
+2025-10-19 17:36:18,689 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 17:46:33,122 HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-10-19 17:46:33,177 HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-10-19 17:46:33,200 HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-10-19 17:47:19,076 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-19 17:47:19,269 User:What industries has Oscar worked in?
+Assistant:Oscar has worked primarily in the technology sector, focusing on software development, cloud computing, and digital transformation. His experience spans various industries including financial services, telecommunications, and healthcare technology, where he has contributed to developing scalable IT solutions and leading technical teams.
+ ----
+2025-10-19 17:47:21,800 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 17:55:35,482 HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-10-19 17:55:35,502 HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-10-19 17:55:35,504 HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-10-19 17:56:06,161 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-19 17:56:06,249 User:What is his favorite food?
+Assistant:Oscar's favorite food is sushi with no junk: just fish, rice, ginger, soy sauce, and lots of wasabi.
+ ----
+2025-10-19 17:56:09,353 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 18:03:35,542 HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-10-19 18:03:35,563 HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-10-19 18:03:35,576 HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-10-19 18:03:49,542 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 18:03:49,629 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-19 18:03:49,826 User:What are Oscar's main programming skills?
+Assistant:Oscar's main programming skills include JavaScript, TypeScript, Java, Python, C++, SQL, and NoSQL. He is also experienced in full-stack web development technologies like HTML, CSS, React, Next.js, and backend frameworks such as Node.js and Express. His expertise covers algorithms, data structures, and building scalable microservices, showcasing a strong foundation in both traditional computer science and modern web development.
+ ----
+2025-10-19 18:03:55,388 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 18:13:38,000 HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-10-19 18:13:38,006 HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-10-19 18:13:38,027 HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-10-19 18:14:16,920 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-19 18:14:16,998 User:what is his favorite food?
+Assistant:Oscar's favorite food is sushi prepared simply with fish, rice, ginger, soy sauce, and lots of wasabi.
+ ----
+2025-10-19 18:14:21,711 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 18:14:26,518 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-19 18:14:26,523 User:And his age?
+Assistant:Oscar has 25 years and 10 months of professional experience, but his exact age is not specified in the profile.
+ ----
+2025-10-19 18:14:27,156 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 18:25:37,678 HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-10-19 18:25:37,681 HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-10-19 18:25:37,703 HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-10-19 18:25:55,582 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-19 18:25:55,663 User:Can you summarize Oscar's recent projects?
+Assistant:Oscar has led the full lifecycle of custom technical projects for diverse clients, from initial consultation and requirements gathering to design, fabrication, and implementation. His approach mirrors iterative software engineering processes, integrating deep understanding of materials, engineering principles, and fabrication techniques to deliver innovative, scalable, and adaptable solutions. He emphasizes modularity and maintainability in physical product design, showcasing strong analytical, problem-solving, and client management skills in service-oriented environments. Additionally, Oscar identifies opportunities to enhance efficiency and workflows through custom tools and processes, demonstrating a commitment to continuous learning and technical adaptability.
+ ----
+2025-10-19 18:25:56,930 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 18:26:06,070 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 400 Bad Request"
+2025-10-19 18:26:06,072 Error getting response: Error code: 400 - {'error': {'message': "Unknown parameter: 'input[1].metadata'.", 'type': 'invalid_request_error', 'param': 'input[1].metadata', 'code': 'unknown_parameter'}}. (request_id: req_137d63b5c326478da5e5db370673183e)
+2025-10-19 18:26:06,073 Error during LLM call: Error code: 400 - {'error': {'message': "Unknown parameter: 'input[1].metadata'.", 'type': 'invalid_request_error', 'param': 'input[1].metadata', 'code': 'unknown_parameter'}}
+2025-10-19 18:26:06,073 User:What is his favorite food?
+Assistant:Sorry, I encountered an issue generating that response.
+ ----
+2025-10-19 18:26:07,838 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 18:26:30,888 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 400 Bad Request"
+2025-10-19 18:26:30,890 Error getting response: Error code: 400 - {'error': {'message': "Unknown parameter: 'input[1].metadata'.", 'type': 'invalid_request_error', 'param': 'input[1].metadata', 'code': 'unknown_parameter'}}. (request_id: req_de9862c078f94dc2bf860339bc6957bd)
+2025-10-19 18:26:30,890 Error during LLM call: Error code: 400 - {'error': {'message': "Unknown parameter: 'input[1].metadata'.", 'type': 'invalid_request_error', 'param': 'input[1].metadata', 'code': 'unknown_parameter'}}
+2025-10-19 18:26:30,890 User:What college did he go to?
+Assistant:Sorry, I encountered an issue generating that response.
+ ----
+2025-10-19 18:26:33,643 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 18:34:13,925 HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-10-19 18:34:13,944 HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-10-19 18:34:13,995 HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-10-19 18:34:28,415 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-19 18:34:28,506 User:What are Oscar's main programming skills?
+Assistant:Oscar's main programming skills include JavaScript, TypeScript, Python, Java, C++, SQL, and NoSQL. He also has expertise in full-stack web development using technologies such as HTML, CSS, React, Next.js, Node.js, and Express.
+ ----
+2025-10-19 18:34:30,844 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 18:34:40,450 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-19 18:34:40,458 User:What food does he like?
+Assistant:Oscar's favorite food is sushi made simply with fish, rice, ginger, soy sauce, and lots of wasabi.
+ ----
+2025-10-19 18:34:41,408 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 18:36:54,281 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-19 18:36:56,999 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-19 18:36:57,005 User:How old is he?
+Assistant:That information isn't included in Oscar's profile.
+ ----
+2025-10-19 18:37:00,040 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"

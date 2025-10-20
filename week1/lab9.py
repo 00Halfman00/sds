@@ -5,24 +5,22 @@ from openai import OpenAI
 import gradio as gr
 
 
-""" Load Environment Variables """
+#Load Environment Variables
 load_dotenv(override=True)
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
-""" Selected LLMs and OpenAI Client instance (Http calls to the LLMs) """
+# Selected LLMs and OpenAI Client instance (Http calls to the LLMs)
 CHAT_MODEL = "gpt-4.1-mini"
 IMAGE_MODEL = "dall-e-3"
 openai = OpenAI()
 
 
-""" BASE64 ENCODING """
+# BASE64 ENCODING
 import base64
 from io import BytesIO
 
 
-""" IMAGE LLM """
-
-
+# IMAGE LLM
 def artist_agent(city):
     image_response = openai.images.generate(
         model=IMAGE_MODEL,
@@ -36,11 +34,11 @@ def artist_agent(city):
     return Image.open(BytesIO(image_data))
 
 
-""" SYSTEM MESSAGE """
+# SYSTEM MESSAGE
 system_msg = "You are a helpful assistant for an Airline called FlightAI. "
 system_msg += "Give short, witty, snarky answers, no more than 1 sentence."
 
-""" TOOLS """
+# TOOLS
 ticket_prices = {"london": "$799", "paris": "$899", "tokyo": "$1400", "sydney": "$2999"}
 
 

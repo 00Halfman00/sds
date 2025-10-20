@@ -1,0 +1,27 @@
+2025-10-18 17:26:13,247 HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-10-18 17:26:13,268 HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-10-18 17:26:13,284 HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-10-18 17:26:36,575 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-18 17:26:36,658 User: What are Oscar’s main programming skills?
+Assistant: Oscar’s main programming skills include proficiency in Python, Java, JavaScript, and C++. He is experienced in web development frameworks such as React and Angular, and has strong capabilities in backend technologies including Node.js and Django. Additionally, Oscar is skilled in database management using SQL and NoSQL systems, and demonstrates expertise in software development best practices and version control with Git.
+---
+2025-10-18 17:26:37,876 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-18 17:26:58,495 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-18 17:26:58,500 User: What is his favorite food?
+Assistant: I’m Oscar’s professional assistant and can only answer work-related questions.
+---
+2025-10-18 17:26:58,991 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-18 17:26:59,476 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-18 17:28:34,785 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-18 17:28:34,793 User: How old is Oscar?
+Assistant: That information isn’t included in Oscar’s profile.
+---
+2025-10-18 17:28:36,382 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
+2025-10-18 17:40:44,620 HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-10-18 17:40:44,639 HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-10-18 17:40:44,754 HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-10-18 17:41:00,393 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2025-10-18 17:41:00,474 User: What industries has Oscar worked in?
+Assistant: Oscar has extensive experience in the technology and software development industries, with significant roles in areas such as digital transformation, cloud computing, data analytics, and SaaS solutions. He has worked in sectors including finance, healthcare, and telecommunications, leveraging his expertise to deliver innovative IT strategies and solutions.
+---
+2025-10-18 17:41:03,748 HTTP Request: POST https://api.openai.com/v1/traces/ingest "HTTP/1.1 204 No Content"
